@@ -1,4 +1,5 @@
 ﻿using System;
+using MediatorPattern.Structural;
 
 namespace MediatorPattern
 {
@@ -6,7 +7,18 @@ namespace MediatorPattern
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!"); 
+            var mediator = new ConcreteMediator();
+            
+            var firstColleague = new FirstColleague(mediator);
+            var secondColleague = new SecondColleague(mediator);
+            
+            mediator.FirstColleague = firstColleague;
+            mediator.SecondColleague = secondColleague;
+
+            firstColleague.Send("Hello world from the First Colleague");
+            secondColleague.Send("Hello world from the Second Colleague");
+
+            Console.ReadKey();
         }
     }
 }
