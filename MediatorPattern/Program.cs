@@ -9,11 +9,11 @@ namespace MediatorPattern
         {
             var mediator = new ConcreteMediator();
             
-            var firstColleague = new FirstColleague(mediator);
-            var secondColleague = new SecondColleague(mediator);
+            var firstColleague = new FirstColleague();
+            var secondColleague = new SecondColleague();
             
-            mediator.FirstColleague = firstColleague;
-            mediator.SecondColleague = secondColleague;
+            mediator.RegisterColleague(firstColleague);
+            mediator.RegisterColleague(secondColleague);
 
             firstColleague.Send("Hello world from the First Colleague");
             secondColleague.Send("Hello world from the Second Colleague");

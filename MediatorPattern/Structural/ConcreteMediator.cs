@@ -10,17 +10,21 @@ namespace MediatorPattern.Structural
 {
     public class ConcreteMediator : Mediator
     {
-        public FirstColleague FirstColleague { get; set; }
-        public SecondColleague SecondColleague { get; set; }
-        public List<Colleague> ColleagueList => new List<Colleague> { FirstColleague, SecondColleague };
+        private readonly List<Colleague> _colleagueList = new List<Colleague>();
 
         public override void Send(string message, Colleague sender)
         {
-            foreach (var listener in ColleagueList)
+            foreach (var listener in _colleagueList)
             {
                 if(listener != sender)
                     listener.HandleNotification(message);
             }
+        }
+
+        public override void RegisterColleague(Colleague colleague)
+        {
+            colleague.SetMediator(this);
+            _colleagueList.Add(colleague);
         }
     }
 }
