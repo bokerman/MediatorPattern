@@ -21,7 +21,7 @@ namespace MediatorPattern.Structural
             }
         }
 
-        public override void RegisterColleague(Colleague colleague)
+        public void RegisterColleague(Colleague colleague)
         {
             colleague.SetMediator(this);
             _colleagueList.Add(colleague);
