@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,14 @@ namespace MediatorPattern.Structural
                 if(listener != sender)
                     listener.HandleNotification(message);
             }
+        }
+
+        public T CreateColleague<T>() where T : Colleague, new()
+        {
+            T colleague = new T();
+            colleague.SetMediator(this);
+            RegisterColleague(colleague);
+            return colleague;
         }
 
         public void RegisterColleague(Colleague colleague)
