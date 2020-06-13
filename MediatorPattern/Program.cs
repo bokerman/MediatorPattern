@@ -7,13 +7,24 @@ namespace MediatorPattern
     {
         static void Main(string[] args)
         {
-            var mediator = new ConcreteMediator();
+            var chatRoom = new TeamChatRoom();
+            
+            // Create developers
+            var johnny = new Developer("Johnny");
+            var brandon = new Developer("Brandon");
+            var david = new Developer("David");
 
-            var firstColleague = mediator.CreateColleague<FirstColleague>();
-            var secondColleague = mediator.CreateColleague<SecondColleague>();
+            // Create testers
+            var michael = new Tester("Michael");
+            var peter = new Tester("Peter");
+            var alex = new Tester("Alex");
 
-            firstColleague.Send("Hello world from the First Colleague");
-            secondColleague.Send("Hello world from the Second Colleague");
+            
+            chatRoom.RegisterTeamMembers(johnny, brandon, david, michael, peter, alex);
+
+            johnny.Send("I did it!");
+            michael.Send("Ok guys, let's test the crap out or it");
+            brandon.SendTo<Developer>("Hopefully Johnny nailed it!");
 
             Console.ReadKey();
         }
